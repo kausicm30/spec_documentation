@@ -1,0 +1,152 @@
+{
+    "data":{
+        "name":"data_transformer.forward_mapping.vamaship_domestic_surface.mapping",
+        "description":"this will map shipment details from our db format to vamaship format",
+        "event_type":"data_mapping",
+        "parameters":{
+            "properties": {
+                "shipment_data":{
+                    "ref":"outputs/initial_event/event_data"
+                }
+            }
+        },
+        "mapping":{
+            "type": "object",
+            "conversion":{
+                "type": ""
+            },
+            "properties":{
+                "seller": {
+                    "type": "object",
+                    "properties":{
+                        "address": {
+                            "ref":"parameters/shipment_data/shipper_address_1"
+                        },
+                        "city": {
+                            "ref":"parameters/shipment_data/shipper_city"
+                        },
+                        "country": {
+                            "ref":"parameters/shipment_data/shipper_country"
+                        },
+                        "email": {
+                            "ref":"parameters/shipment_data/shipper_email_id"
+                        },
+                        "name": {
+                            "ref":"parameters/shipment_data/shipper_name"
+                        },
+                        "phone": {
+                            "ref":"parameters/shipment_data/shipper_mobile_no"
+                        },
+                        "pincode": {
+                            "ref":"parameters/shipment_data/shipper_pincode"
+                        },
+                        "state": {
+                            "ref": "parameters/shipment_data/shipper_state"
+                        }
+                    }
+                },
+                "shipments":{
+                    "type":"array",
+                    "properties":{
+                        "type":"object",
+                        "surface_category":{
+                            "default_value":"B2C"
+                        },
+                        "hsn_code":{
+                            "default_value":"63071030"
+                        },
+                        "address":{
+                            "ref":"parameters/shipment_data/receiver_address_1"
+                        },
+                        "breadth":{
+                            "ref":"parameters/shipment_data/package_width"
+                        },
+                        "city":{
+                            "ref":"parameters/shipment_data/receiver_city"
+                        },
+                        "country":{
+                            "ref":"parameters/shipment_data/receiver_country"
+                        },
+                        "email":{
+                            "ref":"parameters/shipment_data/receiver_email_id"
+                        },
+                        "height":{
+                            "ref":"parameters/shipment_data/package_height"
+                        },
+                        "is_cod":{
+                            "ref":"parameters/shipment_data/shipment_type",
+                            "operation":{
+                                "type":"dependent_value_check",
+                                "inputs":{
+                                    "properties":{
+                                        "check_value":{
+                                            "default_value":"cod"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "length":{
+                            "ref":"parameters/shipment_data/package_length"
+                        },
+                        "name":{
+                            "ref":"parameters/shipment_data/receiver_name"
+                        },
+                        "phone":{
+                            "ref":"parameters/shipment_data/receiver_mobile_no"
+                        },
+                        "pickup_date":{
+                            "ref":"parameters/shipment_data/pickup_date"
+                        },
+                        "pincode":{
+                            "ref":"parameters/shipment_data/receiver_pincode"
+                        },
+                        "product":{
+                            "ref":"parameters/shipment_data/package_item_description"
+                        },
+                        "product_value":{
+                            "ref":"parameters/shipment_data/package_product_value"
+                        },
+                        "quantity":{
+                            "ref":"parameters/shipment_data/package_quantity"
+                        },
+                        "reference1":{
+                            "default_value":"002"
+                        },
+                        "reference2":{
+                            "default_value":"refno2"
+                        },
+                        "state":{
+                            "ref":"parameters/shipment_data/receiver_state"
+                        },
+                        "unit":{
+                            "default_value":"cm"
+                        },
+                        "weight":{
+                            "ref":"parameters/shipment_data/package_weight"
+                        }
+                    }
+                }
+            }
+        },
+        "outputs":{
+            "success":{
+                "properties":{
+                    "mapped_data":{
+                        "ref": "mapping"
+                    }
+                }
+            },
+            "error":{
+                "properties":{
+                    "error_code":{
+                        "ref": "error_code"
+                    },
+                    "error_message":{
+                        "default_value": ""
+                    }
+                }
+            }
+        }
+    }
+}

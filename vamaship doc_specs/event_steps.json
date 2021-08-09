@@ -1,0 +1,50 @@
+{
+    "data": {
+        "title": "create shipment in vamaship",
+        "description": "",
+        "name": "shipment.post.vamaship",
+        "start_event": "data_transformer.forward_mapping.vamaship_domestic_surface.mapping",
+        "steps": {
+            "data_transformer.forward_mapping.vamaship_domestic_surface.mapping":{
+                "success": {
+                    "event_key": "logistics.post.vamaship_domestic_surface.get_quote"
+                },
+                "error": {
+                    "event_key": "notification.error_message"
+                }
+            },
+            "logistics.post.vamaship_domestic_surface.get_quote" :{
+                "success": {
+                    "event_key": "logistics.post.vamaship_domestic_surface.book"
+                },
+                "error": {
+                    "event_key": "notification.error_message"
+                }
+            },
+            "logistics.post.vamaship_domestic_surface.book" :{
+                "success": {
+                    "event_key": "logistics.post.vamaship_domestic_surface.get_label"
+                },
+                "error": {
+                    "event_key": "notification.error_message"
+                }
+            },
+            "logistics.post.vamaship_domestic_surface.get_label" :{
+                "success": {
+                    "event_key": "data_transformer.reverse_mapping.vamaship_domestic_surface.mapping"
+                },
+                "error": {
+                    "event_key": "notification.error_message"
+                }
+            },
+            "data_transformer.reverse_mapping.vamaship_domestic_surface.mapping" : {
+                "success": {
+                    "event_key": ""
+                },
+                "error": {
+                    "event_key": "notification.error_message"
+                }
+            }
+        }
+    }
+}

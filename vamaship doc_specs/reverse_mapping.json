@@ -1,0 +1,239 @@
+{
+    "data":{
+        "name":"data_transformer.reverse_mapping.vamaship_domestic_surface.mapping",
+        "description":"this will map shipment details from vamaship to our database format",
+        "event_type":"data_mapping",
+        "parameters":{
+            "properties": {
+                "shipment_data":{
+                    "ref":"outputs/initial_event/event_data"
+                },
+                "shipping_label":{
+                    "ref":"outputs/logistics.post.vamaship_domestic_surface.get_label/data/documents/labels"
+                },
+                "order_id":{
+                    "ref":"outputs/logistics.post.vamaship_domestic_surface.get_label/data/shipments[0]/order_id"
+                },
+                "track_id":{
+                    "ref":"outputs/logistics.post.vamaship_domestic_surface.get_label/data/shipments[0]/awb"
+                }
+            }
+        },
+        "mapping":{
+            "type": "object",
+            "conversion":{
+                "type": ""
+            },
+            "properties":{
+                "account_id":{
+                    "ref":"parameters/shipment_data/account_id"
+                },
+                "shipment_id":{
+                    "ref" :"parameters/shipment_data/shipment_id"
+                },
+                "shipping_partner_id":{
+                    "ref": "parameters/shipment_data/shipping_partner_id"
+                },
+                "channel_name":{
+                    "ref":"parameters/shipment_data/channel_name"
+                },
+                "tracking_number":{
+                    "ref":"parameters/shipment_data/track_id"
+                },
+                "aggregator_shipment_id":{
+                    "ref": "parameters/shipment_data/aggregator_shipment_id"
+                },
+                "order_id":{
+                    "ref": "parameters/shipment_data/order_id"
+                },
+                "service_type":{
+                    "ref": "parameters/shipment_data/service_type"
+                },
+                "receiver_details":{
+                    "type": "object",
+                    "properties":{
+                        "receiver_email_id":{
+                            "ref": "parameters/shipment_data/receiver_email_id"
+                        },
+                        "receiver_name":{
+                            "ref": "parameters/shipment_data/receiver_name"
+                        },
+                        "receiver_mobile_no":{
+                            "ref": "parameters/shipment_data/receiver_mobile_no"
+                        },
+                        "receiver_pincode":{
+                            "ref":"parameters/shipment_data/receiver_pincode"
+                        },
+                        "receiver_state":{
+                            "ref": "parameters/shipment_data/receiver_state"
+                        },
+                        "receiver_country":{
+                            "ref": "parameters/shipment_data/receiver_country"
+                        },
+                        "receiver_city":{
+                            "ref": "parameters/shipment_data/receiver_city"
+                        },
+                        "receiver_district":{
+                            "ref": "parameters/shipment_data/receiver_district"
+                        },
+                        "receiver_address_1":{
+                            "ref":"parameters/shipment_data/receiver_address_1"
+                        },
+                        "receiver_address_2":{
+                            "ref":"parameters/shipment_data/receiver_address_2"
+                        },
+                        "receiver_address_3":{
+                            "ref": "parameters/shipment_data/receiver_address_3"
+                        }
+                    }
+                },
+                "shipper_details":{
+                    "type": "object",
+                    "properties":{
+                        "shipper_email_id":{
+                            "ref": "parameters/shipment_data/shipper_email_id"
+                        },
+                        "shipper_company":{
+                            "ref": "parameters/shipment_data/shipper_company"
+                        },
+                        "shipper_name":{
+                            "ref": "parameters/shipment_data/shipper_name"
+                        },
+                        "sipper_mobile_no":{
+                            "ref": "parameters/shipment_data/sipper_mobile_no"
+                        },
+                        "shipper_pincode":{
+                            "ref": "parameters/shipment_data/shipper_pincode"
+                        },
+                        "shipper_state":{
+                            "ref": "parameters/shipment_data/shipper_state"
+                        },
+                        "shipper_country":{
+                            "ref": "parameters/shipment_data/shipper_country"
+                        },
+                        "shipper_city":{
+                            "ref": "parameters/shipment_data/shipper_city"
+                        },
+                        "shipper_district":{
+                            "ref": "parameters/shipment_data/shipper_district"
+                        },
+                        "shipper_address_1":{
+                            "ref": "parameters/shipment_data/shipper_address_1"
+                        },
+                        "shipper_address_2":{
+                            "ref": "parameters/shipment_data/shipper_address_2"
+                        },
+                        "shipper_address_3":{
+                            "ref": "parameters/shipment_data/shipper_address_3"
+                        }
+                    }
+                },
+                "package_details":{
+                    "type": "object",
+                    "properties":{
+                        "package_item_description":{
+                            "ref": "parameters/shipment_data/package_item_description"
+                        },
+                        "package_item_type":{
+                            "ref": "parameters/shipment_data/package_item_type"
+                        },
+                        "package_quantity":{
+                            "ref": "parameters/shipment_data/package_quantity"
+                        },
+                        "package_height":{
+                            "ref": "parameters/shipment_data/package_height"
+                        },
+                        "package_width":{
+                            "ref": "parameters/shipment_data/package_width"
+                        },
+                        "package_length":{
+                            "ref": "parameters/shipment_data/package_length"
+                        },
+                        "package_weight":{
+                            "ref": "parameters/shipment_data/package_weight"
+                        },
+                        "package_product_value":{
+                            "ref": "parameters/shipment_data/package_product_value"
+                        }
+                    }
+                },
+                "pickup_details":{
+                    "type": "object",
+                    "properties":{
+                        "pickup_date":{
+                            "ref": "parameters/shipment_data/pickup_date"
+                        },
+                        "pickup_to_time":{
+                            "ref": "parameters/shipment_data/pickup_to_time"
+                        },
+                        "pickup_from_time":{
+                            "ref": "parameters/shipment_data/pickup_from_time"
+                        }
+                    }
+                },
+                "billing_details":{
+                    "type": "object",
+                    "properties":{
+                        "billling_invoice_number":{
+                            "ref": "parameters/shipment_data/billling_invoice_number"
+                        },
+                        "billling_duty_payment_type":{},
+                        "billing_duty_applicable":{},
+                        "billing_payment_type":{
+                            "ref": "parameters/shipment_data/billing_payment_type"
+                        },
+                        "billing_order_amount":{
+                            "ref": "parameters/shipment_data/billing_order_amount"
+                        },
+                        "billing_cod_amount":{
+                            "ref": "parameters/shipment_data/billing_cod_amount"
+                        },
+                    }
+                },
+                "shipping_label":{
+                    "ref":"parameters/shipping_label"
+                },
+                "current_status":{
+                    "default_value":""
+                },
+                "retry_count":{
+                    "default_value":""
+                },
+                "status_timestamp":{
+                    "default_value":""
+                },
+                "reason_code":{
+                    "default_value":""
+                },
+                "comments":{
+                    "default_value":""
+                },
+                "expected_delivery_date":{
+                    "default_value":""
+                },
+                "is_archive":{
+                    "default_value":""
+                }
+            }
+        },
+        "outputs":{
+            "success":{
+                "properties":{
+                    "mapped_data":{
+                        "ref": "mapping"
+                    }
+                }
+            },
+            "error":{
+                "properties":{
+                    "error_code":{
+                        "ref": "error_code"
+                    },
+                    "error_message":{
+                        "default_value": ""
+                    }
+                }
+            }
+        }
+    }
+}
