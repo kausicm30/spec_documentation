@@ -38,7 +38,7 @@
                     "ref":"parameters/shipment_data/channel_name"
                 },
                 "tracking_number":{
-                    "ref":"parameters/shipment_data/track_id"
+                    "ref":"parameters/track_id"
                 },
                 "aggregator_shipment_id":{
                     "ref": "parameters/shipment_data/aggregator_shipment_id"
